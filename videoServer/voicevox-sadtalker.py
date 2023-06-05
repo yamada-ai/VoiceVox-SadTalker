@@ -87,6 +87,7 @@ def create_video(req:createMovie):
     os.makedirs(save_dir, exist_ok=True)
 
     device =  "cuda" if torch.cuda.is_available() else "cpu"
+    print("device", device)
 
     preprocess = "crop"
     pose_style = 0

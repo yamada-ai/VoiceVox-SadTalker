@@ -11,20 +11,22 @@ RUN apt-get -y install python3-pip git wget
 
 RUN pip3 install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113 ffmpeg tavern fastapi unicorn uvicorn
 
-WORKDIR /app
+WORKDIR /app/SadTalker
 
-RUN git clone https://github.com/OpenTalker/SadTalker.git 
+ENV SADTALKER_COMMIT_HASH c11aa145cf9cf9d745c1cb90064734def798a545
+
+RUN git init && git remote add origin https://github.com/OpenTalker/SadTalker.git && git fetch --depth 1 origin ${SADTALKER_COMMIT_HASH} && git pull origin ${SADTALKER_COMMIT_HASH}
 
 WORKDIR /app/SadTalker
 
 RUN pip3 install -r requirements.txt
 
-RUN chmod +x scripts/download_models.sh && scripts/download_models.sh
-
 RUN apt-get -y update &&  \
     apt-get install -f && \ 
     apt-get install -y libgl1-mesa-dev libglib2.0-0 ffmpeg zip
 
-RUN cd ./checkpoints/ && unzip BFM_Fitting.zip && unzip hub.zip 
+RUN chmod +x scripts/download_models.sh && scripts/download_models.sh
+
+# RUN cd ./checkpoints/ && unzip BFM_Fitting.zip && unzip hub.zip 
 
 COPY voicevox-sadtalker.py /app/SadTalker
