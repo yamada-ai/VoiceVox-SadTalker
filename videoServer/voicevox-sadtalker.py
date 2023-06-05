@@ -99,7 +99,6 @@ def create_video(req:createMovie):
     input_pitch = None
     input_roll = None
 
-
     current_code_path = sys.argv[0]
     # current_root_path = os.path.split(current_code_path)[0]
     current_root_path = "/app/SadTalker/"
