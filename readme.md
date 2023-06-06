@@ -28,6 +28,9 @@
     $ curl -X POST  -H "Content-Type: application/json"  -d '{"text":"これはテストです", "speaker_id":1, "image_id":1}' localhost:8080/create/video/
     ```
 
+
+https://github.com/yamada-ai/VoiceVox-SadTalker/assets/24557368/ad907035-4334-4d06-93ea-0fbd5703bcee
+
 ## 注意事項
 - videoServer/dockerfile では，nvidia/cuda:11.7.0-base-ubuntu22.04をベースにして環境構築をしている．実行するPCの環境によっては不適切になる可能性があるため，動かない場合は一度チェックして欲しい
     - 参考
